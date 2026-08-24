@@ -1,0 +1,47 @@
+/* Animação personalizada de brilho e escala para o título principal */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1); /* Tamanho original */
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)); /* Glow sutil */
+  }
+  50% {
+    transform: scale(1.03); /* Leve expansão */
+    filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.8)); /* Glow intenso */
+  }
+}
+
+/* Aplicação da animação no título */
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite; /* Executa infinitamente */
+}
+
+/* Estilos de suporte ao Tema Claro quando a classe 'dark' é removida do <html> */
+html:not(.dark) body {
+  background-color: #f8fafc; /* Fundo claro */
+  color: #0f172a; /* Texto escuro */
+}
+
+html:not(.dark) .card-perfume {
+  background-color: #ffffff; /* Fundo do card branco */
+  border-color: #e2e8f0; /* Borda clara */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); /* Sombra suave */
+}
+
+html:not(.dark) footer {
+  background-color: #f1f5f9; /* Fundo do rodapé claro */
+  border-color: #e2e8f0; /* Borda superior clara */
+}
+
+html:not(.dark) .social-icon {
+  color: #64748b; /* Cor padrão dos ícones no modo claro */
+}
+
+/* Efeito Hover com brilho neon nos ícones de redes sociais */
+.social-icon {
+  display: inline-block; /* Permite transformações numéricas de posição */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Animação fluida */
+}
+
+.social-icon:hover {
+  filter: drop-shadow(0 0 12px currentColor); /* Adiciona iluminação com a cor ativa */
+}

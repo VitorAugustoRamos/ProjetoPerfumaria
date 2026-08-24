@@ -1,0 +1,197 @@
+<!DOCTYPE html> <!-- Define que este documento é HTML5 -->
+<html lang="pt-BR" class="dark"> <!-- Define o idioma principal como português do Brasil e inicia com o tema dark -->
+<head> <!-- Cabeçalho com metadados e links de scripts/estilos -->
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante a responsividade em dispositivos móveis -->
+  <title>Perfumaria Exclusiva</title> <!-- Título exibido na aba do navegador -->
+  
+  <!-- Tailwind CSS via CDN para utilitários modernos de estilização -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Script para configurar o suporte ao modo escuro via classe no Tailwind -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // Ativa a alternância de tema por classe CSS
+    }
+  </script>
+  
+  <!-- Swiper CSS para o carrossel de imagens -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- FontAwesome para os ícones de redes sociais e interface -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Link do arquivo CSS personalizado -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Three.js para renderização do objeto 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 transition-colors duration-500 font-sans min-h-screen"> <!-- Estilo base do corpo com transição suave de cores -->
+
+  <!-- Botão para alternar entre tema claro e escuro -->
+  <button id="theme-toggle" class="fixed top-6 right-6 z-50 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+    <i id="theme-toggle-icon" class="fas font-solid fa-sun text-xl"></i> <!-- Ícone que muda dinamicamente -->
+  </button>
+
+  <!-- Seção Hero com animação 3D e Título -->
+  <section class="flex flex-col items-center justify-center min-h-screen relative p-4 text-center">
+    <!-- Container onde a cena 3D interativa será renderizada -->
+    <div id="canvas-container" class="w-full max-w-lg h-80 mb-6 cursor-grab active:cursor-grabbing"></div>
+    
+    <!-- Título principal com efeito de animação via CSS -->
+    <h1 class="text-4xl md:text-6xl font-extrabold tracking-wider bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent animate-pulse-glow">
+      Perfumaria Seu Nome <!-- Substitua "Seu Nome" pelo seu nome real -->
+    </h1>
+  </section>
+
+  <!-- Seção do Slider de Imagens da pasta /imagem -->
+  <section class="max-w-4xl mx-auto my-12 px-4">
+    <!-- Container principal do Swiper -->
+    <div class="swiper mySwiper rounded-2xl shadow-2xl overflow-hidden border border-slate-700">
+      <div class="swiper-wrapper"> <!-- Envolvente dos slides -->
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <img src="imagem/perfume1.jpg" alt="Perfume 1" class="w-full h-[400px] object-cover" />
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <img src="imagem/perfume2.jpg" alt="Perfume 2" class="w-full h-[400px] object-cover" />
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <img src="imagem/perfume3.jpg" alt="Perfume 3" class="w-full h-[400px] object-cover" />
+        </div>
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <img src="imagem/perfume4.jpg" alt="Perfume 4" class="w-full h-[400px] object-cover" />
+        </div>
+      </div>
+      <!-- Elementos de navegação do slider -->
+      <div class="swiper-pagination"></div> <!-- Bolinhas de paginação -->
+      <div class="swiper-button-next text-white"></div> <!-- Botão Próximo -->
+      <div class="swiper-button-prev text-white"></div> <!-- Botão Anterior -->
+    </div>
+  </section>
+
+  <!-- Seção da Grade de Produtos (8 Cards em 2 fileiras no desktop) -->
+  <section class="max-w-6xl mx-auto my-16 px-4">
+    <h2 class="text-3xl font-bold text-center mb-10 text-indigo-400">Nossa Coleção Exclusiva</h2>
+    <!-- Grid que se adapta: 1 col no mobile, 2 no tablet, 4 no desktop (gerando 2 fileiras para 8 cards) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Card 1 -->
+      <div class="card-perfume bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-700 flex flex-col justify-between">
+        <img src="imagem/perfume1.jpg" alt="Perfume Elegance" class="w-full h-48 object-cover rounded-lg mb-4">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Perfume Elegance</h3>
+          <p class="text-indigo-400 font-bold text-lg mb-4">R$ 299,00</p>
+        </div>
+        <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg transition-colors">Comprar</button>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card-perfume bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-700 flex flex-col justify-between">
+        <img src="imagem/perfume2.jpg" alt="Perfume Noir" class="w-full h-48 object-cover rounded-lg mb-4">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Perfume Noir</h3>
+          <p class="text-indigo-400 font-bold text-lg mb-4">R$ 349,00</p>
+        </div>
+        <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg transition-colors">Comprar</button>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card-perfume bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-700 flex flex-col justify-between">
+        <img src="imagem/perfume3.jpg" alt="Perfume Velvet" class="w-full h-48 object-cover rounded-lg mb-4">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Perfume Velvet</h3>
+          <p class="text-indigo-400 font-bold text-lg mb-4">R$ 259,00</p>
+        </div>
+        <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg transition-colors">Comprar</button>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card-perfume bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-700 flex flex-col justify-between">
+        <img src="imagem/perfume4.jpg" alt="Perfume Ocean" class="w-full h-48 object-cover rounded-lg mb-4">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Perfume Ocean</h3>
+          <p class="text-indigo-400 font-bold text-lg mb-4">R$ 279,00</p>
+        </div>
+        <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg transition-colors">Comprar</button>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card-perfume bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-700 flex flex-col justify-between">
+        <img src="imagem/perfume1.jpg" alt="Perfume Intense" class="w-full h-48 object-cover rounded-lg mb-4">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Perfume Intense</h3>
+          <p class="text-indigo-400 font-bold text-lg mb-4">R$ 389,00</p>
+        </div>
+        <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg transition-colors">Comprar</button>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card-perfume bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-700 flex flex-col justify-between">
+        <img src="imagem/perfume2.jpg" alt="Perfume Gold" class="w-full h-48 object-cover rounded-lg mb-4">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Perfume Gold</h3>
+          <p class="text-indigo-400 font-bold text-lg mb-4">R$ 429,00</p>
+        </div>
+        <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg transition-colors">Comprar</button>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card-perfume bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-700 flex flex-col justify-between">
+        <img src="imagem/perfume3.jpg" alt="Perfume Rose" class="w-full h-48 object-cover rounded-lg mb-4">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Perfume Rose</h3>
+          <p class="text-indigo-400 font-bold text-lg mb-4">R$ 219,00</p>
+        </div>
+        <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg transition-colors">Comprar</button>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card-perfume bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-700 flex flex-col justify-between">
+        <img src="imagem/perfume4.jpg" alt="Perfume Citrico" class="w-full h-48 object-cover rounded-lg mb-4">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Perfume Citrus</h3>
+          <p class="text-indigo-400 font-bold text-lg mb-4">R$ 199,00</p>
+        </div>
+        <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg transition-colors">Comprar</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Botão Flutuante do WhatsApp -->
+  <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-400 hover:scale-110 transition-all duration-300 flex items-center justify-center">
+    <i class="fab fa-whatsapp text-3xl"></i> <!-- Ícone oficial do WhatsApp -->
+  </a>
+
+  <!-- Rodapé do Site -->
+  <footer class="bg-slate-950 py-10 border-t border-slate-800 text-center">
+    <!-- Ícones de Mídias Sociais com Efeitos CSS de Hover -->
+    <div class="flex justify-center space-x-8 mb-6">
+      <a href="#" class="social-icon text-slate-400 hover:text-blue-500 text-3xl transition-transform duration-300 transform hover:-translate-y-2"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-icon text-slate-400 hover:text-pink-500 text-3xl transition-transform duration-300 transform hover:-translate-y-2"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-icon text-slate-400 hover:text-teal-400 text-3xl transition-transform duration-300 transform hover:-translate-y-2"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="text-slate-500 text-sm">&copy; 2026 Perfumaria Seu Nome. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Widget de Acessibilidade VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <!-- Script Oficial de Integração do VLibras -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app'); // Inicializa o plugin do VLibras
+  </script>
+
+  <!-- Swiper JS para o Slider -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Script de Comportamento do Projeto -->
+  <script src="script.js"></script>
+</body>
+</html>
